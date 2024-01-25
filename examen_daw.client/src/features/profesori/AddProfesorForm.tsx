@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 interface ProfesorData {
   name: string;
+  type: string;
 }
 
 interface AddProfesorFormProps {
@@ -14,6 +15,7 @@ const AddProfesorForm: React.FC<AddProfesorFormProps> = ({ onAddProfesor }) => {
 
   const [profesorData, setProfesorData] = useState<ProfesorData>({
     name: "",
+    type: "",
   });
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -48,6 +50,16 @@ const AddProfesorForm: React.FC<AddProfesorFormProps> = ({ onAddProfesor }) => {
         />
       </label>
       <br />
+      <label>
+        Type:
+        <input
+          type="text"
+          name="type"
+          value={profesorData.type}
+          onChange={handleInputChange}
+          required
+        />
+      </label>
       <button type="submit">Add Profesor</button>
     </form>
   );

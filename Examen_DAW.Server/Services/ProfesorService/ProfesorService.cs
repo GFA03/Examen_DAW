@@ -19,7 +19,8 @@ namespace Examen_DAW.Server.Services.ProfesorService
         }
         public async Task Create(ProfesorDTO profesorDto)
         {
-            Profesor profesor = new Profesor{ Name = profesorDto.Name };
+            Profesor profesor = new Profesor{ Name = profesorDto.Name,
+                                              Type = profesorDto.Type};
             await _profesorRepository.CreateAsync(profesor);
             await _profesorRepository.SaveAsync();
         }

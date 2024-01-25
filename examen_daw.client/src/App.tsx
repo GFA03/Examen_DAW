@@ -14,6 +14,7 @@ interface testData {
 
 interface profesorData {
   name: string;
+  type: string;
 }
 
 interface materieData {

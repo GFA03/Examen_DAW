@@ -6,6 +6,8 @@ namespace Examen_DAW.Server.Models
     {
         public string Name { get; set; }
 
+        public string Type {  get; set; }
+
        public ICollection<ProfesorMaterie> ProfesoriMaterii { get; set; }
     }
 }

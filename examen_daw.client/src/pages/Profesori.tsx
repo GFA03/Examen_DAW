@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 interface Profesor {
   id: string;
   name: string;
+  type: string;
 }
 
 function Profesori() {
@@ -53,7 +54,7 @@ function Profesori() {
         <ul>
           {profesori?.map((prof) => (
             <li key={prof.id}>
-              {prof.name}
+              {prof.name} - Tip: {prof.type === "" ? "Nedeterminat" : prof.type}
               <button onClick={() => handleDeleteProfesor(prof.id)}>
                 Delete
               </button>
