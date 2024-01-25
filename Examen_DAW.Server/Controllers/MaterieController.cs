@@ -1,4 +1,5 @@
 ﻿using Examen_DAW.Server.Models;
+using Examen_DAW.Server.Models.DTOs;
 using Examen_DAW.Server.Services.MaterieService;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -25,7 +26,7 @@ namespace Examen_DAW.Server.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> CreateMaterie(Materie materie)
+        public async Task<IActionResult> CreateMaterie(MaterieDTO materie)
         {
             await _materieService.Create(materie);
             return Ok();

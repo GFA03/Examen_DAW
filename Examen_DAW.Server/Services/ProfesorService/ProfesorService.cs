@@ -1,4 +1,5 @@
 ﻿using Examen_DAW.Server.Models;
+using Examen_DAW.Server.Models.DTOs;
 using Examen_DAW.Server.Repositories.ProfesorRepository;
 
 namespace Examen_DAW.Server.Services.ProfesorService
@@ -16,8 +17,9 @@ namespace Examen_DAW.Server.Services.ProfesorService
         {
             return await _profesorRepository.GetAllAsync();
         }
-        public async Task Create(Profesor profesor)
+        public async Task Create(ProfesorDTO profesorDto)
         {
+            Profesor profesor = new Profesor{ Name = profesorDto.Name };
             await _profesorRepository.CreateAsync(profesor);
             await _profesorRepository.SaveAsync();
         }

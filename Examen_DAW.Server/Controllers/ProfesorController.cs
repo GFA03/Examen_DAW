@@ -1,4 +1,5 @@
 ﻿using Examen_DAW.Server.Models;
+using Examen_DAW.Server.Models.DTOs;
 using Examen_DAW.Server.Services.ProfesorService;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -26,7 +27,7 @@ namespace Examen_DAW.Server.Controllers
             }
 
             [HttpPost("create")]
-            public async Task<IActionResult> CreateProfesor(Profesor profesor)
+            public async Task<IActionResult> CreateProfesor(ProfesorDTO profesor)
             {
                 await _profesorService.Create(profesor);
                 return Ok();

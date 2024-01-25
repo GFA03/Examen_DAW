@@ -20,13 +20,11 @@ namespace Examen_DAW.Server.Data
 
             modelBuilder.Entity<ProfesorMaterie>()
                 .HasOne(pm => pm.Profesor)
-                .WithMany(p => p.ProfesoriMaterii)
-                .HasForeignKey(pm => pm.ProfesorId);
+                .WithMany(p => p.ProfesoriMaterii);
 
             modelBuilder.Entity<ProfesorMaterie>()
                 .HasOne(pm => pm.Materie)
-                .WithMany(m => m.ProfesorMaterii)
-                .HasForeignKey(pm => pm.MaterieId);
+                .WithMany(m => m.ProfesorMaterii);
 
             base.OnModelCreating(modelBuilder);
         }

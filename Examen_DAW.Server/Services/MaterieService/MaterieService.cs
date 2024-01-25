@@ -1,4 +1,5 @@
 ﻿using Examen_DAW.Server.Models;
+using Examen_DAW.Server.Models.DTOs;
 using Examen_DAW.Server.Repositories.MaterieRepository;
 
 namespace Examen_DAW.Server.Services.MaterieService
@@ -17,8 +18,9 @@ namespace Examen_DAW.Server.Services.MaterieService
             return await _materieRepository.GetAllAsync();
         }
 
-        public async Task Create(Materie materie)
+        public async Task Create(MaterieDTO materieDto)
         {
+            Materie materie = new Materie { Name = materieDto.Name };
             await _materieRepository.CreateAsync(materie);
             await _materieRepository.SaveAsync();
         }
