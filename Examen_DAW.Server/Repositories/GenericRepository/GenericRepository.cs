@@ -27,6 +27,7 @@ namespace Examen_DAW.Server.Repositories.GenericRepository
 
         public async Task CreateAsync(T entity)
         {
+            entity.Id = Guid.NewGuid();
             await _table.AddAsync(entity);
         }
 
@@ -45,6 +46,7 @@ namespace Examen_DAW.Server.Repositories.GenericRepository
             var entity = _table.Find(id);
             if (entity == null) return false;
             _table.Remove(entity);
+            _dbContext.SaveChanges();
             return true;
         }
 

@@ -24,20 +24,20 @@ namespace Examen_DAW.Server.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> CreateTest([FromBody] Test test)
+        public async Task<IActionResult> CreateTest(Test test)
         {
             await _testService.Create(test);
             return Ok();
         }
 
         [HttpPatch("update")]
-        public async Task<IActionResult> UpdateTest([FromBody] Test test)
+        public async Task<IActionResult> UpdateTest( Test test)
         {
             await _testService.Update(test);
             return Ok();
         }
 
-        [HttpDelete("delete/${id}")]
+        [HttpDelete("delete/{id}")]
         public IActionResult DeleteTest(Guid id)
         {
             _testService.Delete(id);

@@ -1,56 +1,49 @@
-import { useEffect, useState } from 'react';
-import './App.css';
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import "./App.css";
+import Tests from "./pages/Tests";
+import Home from "./pages/Home";
+import AddTestForm from "./features/test/AddTestForm";
 
-interface Forecast {
-    date: string;
-    temperatureC: number;
-    temperatureF: number;
-    summary: string;
+interface testData {
+  name: string;
 }
 
 function App() {
-    const [forecasts, setForecasts] = useState<Forecast[]>();
+  const handleAddTest = async (testData: testData): Promise<void> => {
+    try {
+      const response = await fetch("https://localhost:7216/api/Test/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(testData),
+      });
 
-    useEffect(() => {
-        populateWeatherData();
-    }, []);
-
-    const contents = forecasts === undefined
-        ? <p><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationreact">https://aka.ms/jspsintegrationreact</a> for more details.</em></p>
-        : <table className="table table-striped" aria-labelledby="tabelLabel">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Temp. (C)</th>
-                    <th>Temp. (F)</th>
-                    <th>Summary</th>
-                </tr>
-            </thead>
-            <tbody>
-                {forecasts.map(forecast =>
-                    <tr key={forecast.date}>
-                        <td>{forecast.date}</td>
-                        <td>{forecast.temperatureC}</td>
-                        <td>{forecast.temperatureF}</td>
-                        <td>{forecast.summary}</td>
-                    </tr>
-                )}
-            </tbody>
-        </table>;
-
-    return (
-        <div>
-            <h1 id="tabelLabel">Weather forecast</h1>
-            <p>This component demonstrates fetching data from the server.</p>
-            {contents}
-        </div>
-    );
-
-    async function populateWeatherData() {
-        const response = await fetch('weatherforecast');
-        const data = await response.json();
-        setForecasts(data);
+      if (response.ok) {
+        console.log("test added successfully");
+      } else {
+        const errorText = await response.text();
+        console.error("Error adding test:", response.status, errorText);
+      }
+    } catch (error) {
+      console.error("Error adding test:", error);
     }
+  };
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <Routes>
+          <Route index element={<Navigate to="home" />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/tests" element={<Tests />} />
+          <Route
+            path="/tests/add"
+            element={<AddTestForm onAddTest={handleAddTest} />}
+          />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
 }
 
 export default App;
