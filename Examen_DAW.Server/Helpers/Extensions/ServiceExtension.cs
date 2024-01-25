@@ -2,6 +2,7 @@
 using Examen_DAW.Server.Repositories.ProfesorRepository;
 using Examen_DAW.Server.Repositories.TestRepository;
 using Examen_DAW.Server.Services.MaterieService;
+using Examen_DAW.Server.Services.ProfesorMaterieService;
 using Examen_DAW.Server.Services.ProfesorService;
 using Examen_DAW.Server.Services.TestService;
 
@@ -23,6 +24,7 @@ namespace Examen_DAW.Server.Helpers.Extensions
             services.AddTransient<ITestService, TestService>();
             services.AddTransient<IMaterieService, MaterieService>();
             services.AddTransient<IProfesorService, ProfesorService>();
+            services.AddTransient<IProfesorMaterieService, ProfesorMaterieService>();
 
             return services;
         }
