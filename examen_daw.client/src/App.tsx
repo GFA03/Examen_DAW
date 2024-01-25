@@ -16,6 +16,10 @@ interface profesorData {
   name: string;
 }
 
+interface materieData {
+  name: string;
+}
+
 function App() {
   const handleAddTest = async (testData: testData): Promise<void> => {
     try {
@@ -64,7 +68,7 @@ function App() {
     }
   };
 
-  const handleAddMaterie = async (materieData: MaterieData): Promise<void> => {
+  const handleAddMaterie = async (materieData: materieData): Promise<void> => {
     try {
       const response = await fetch(
         "https://localhost:7216/api/Materie/create",
