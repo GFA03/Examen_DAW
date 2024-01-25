@@ -27,7 +27,9 @@ namespace Examen_DAW.Server.Services.ProfesorMaterieService
                 MaterieId = profesorMaterieDto.MaterieId,
                 ProfesorId = profesorMaterieDto.ProfesorId
             };
+
             await _table.AddAsync(profesorMaterie);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }
